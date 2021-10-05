@@ -14,7 +14,19 @@ export class UserService {
     return this.http.get('api/v1/user/');
   }
 
-  saveUser(userValue: any): Subscription {
-    return this.http.post<any>('api/v1/user/create/', userValue).subscribe();
+  createUser(userValue: any): Subscription {
+    return this.http.post('api/v1/user/create/', userValue).subscribe();
+  }
+
+  patchUser(userValue: any): Subscription {
+    return this.http.patch('api/v1/user/update/ID!', userValue).subscribe();
+  }
+
+  editUser(userValue: any): Subscription {
+    return this.http.put('api/v1/user/update/ID!', userValue).subscribe();
+  }
+
+  deleteUser(id: number): Subscription {
+    return this.http.delete('api/v1/user/delete/ID!').subscribe();
   }
 }
