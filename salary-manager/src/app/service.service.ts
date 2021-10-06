@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-
+import { formatDateAPI } from './utils/formatter';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUserList(): Observable<any> {
     return this.http.get('api/v1/user/');
   }
 
   createUser(userValue: any): Subscription {
+    userValue.born_date = formatDateAPI(userValue.born_date);
+    console.log(userValue);
     return this.http.post('api/v1/user/create/', userValue).subscribe();
   }
 

@@ -1,7 +1,19 @@
-<div class="card" *ngIf="userList">
-  <span *ngFor="let result of userList.results">
-    <h2>{{result.name}}</h2>
-    <h3>{{result.cpf}}</h3>
-    <h3>{{result.born_date}}</h3>
-  </span>
+<div class="app">
+  <ng-container *ngIf="!isEditing">
+    <button
+      id="appButton"
+      mat-raised-button
+      color="accent"
+      (click)="toggleEditing()"
+    >
+      Cadastrar Usuário
+    </button>
+    <ng-container *ngIf="userList">
+      <app-user *ngFor="let result of userList.results" [user]="result">
+      </app-user>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="isEditing">
+    <app-register (createUser)="toggleEditing()"></app-register>
+  </div>
 </div>

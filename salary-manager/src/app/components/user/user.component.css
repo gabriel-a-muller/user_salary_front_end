@@ -1,0 +1,7 @@
+.salary-container {
+  display: flex;
+}
+
+.salary-container ::ng-deep .card {
+  margin-right: 20px;
+}
