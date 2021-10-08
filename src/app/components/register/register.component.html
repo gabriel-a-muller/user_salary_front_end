@@ -3,12 +3,12 @@
   <form id="form-user" [formGroup]="userForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Nome: </mat-label>
-      <input matInput placeholder="Ex. Jhon" value="" formControlName="name" />
+      <input matInput placeholder="Ex. Jhon" formControlName="name" />
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>CPF: </mat-label>
-      <input matInput placeholder="" value="" formControlName="cpf" />
+      <input matInput placeholder=""  formControlName="cpf" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -24,11 +24,24 @@
   </form>
 </app-card>
 
-<button
-  id="appButton"
-  mat-raised-button
-  color="accent"
-  (click)="registerUser()"
->
-  Finalizar Cadastro
-</button>
+<ng-container *ngIf="!currentEditingUser">
+  <button
+    id="appButton"
+    mat-raised-button
+    color="accent"
+    (click)="registerUser()"
+  >
+    Finalizar Cadastro
+  </button>
+</ng-container>
+
+<ng-container *ngIf="currentEditingUser">
+  <button
+    id="appButton"
+    mat-raised-button
+    color="accent"
+    (click)="editUser()"
+  >
+    Finalizar Edição
+  </button>
+</ng-container>

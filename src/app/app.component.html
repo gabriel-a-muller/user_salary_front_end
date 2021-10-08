@@ -9,11 +9,11 @@
       Cadastrar Usuário
     </button>
     <ng-container *ngIf="userList">
-      <app-user *ngFor="let result of userList.results" [user]="result">
+      <app-user *ngFor="let result of userList.results" [user]="result" (editUser)="toggleEditing()" (setEditUser)="setEditUser($event)">
       </app-user>
     </ng-container>
   </ng-container>
   <div *ngIf="isEditing">
-    <app-register (createUser)="toggleEditing()"></app-register>
+    <app-register [currentEditingUser]="currentEditingUser" (createUser)="toggleEditing()"></app-register>
   </div>
 </div>

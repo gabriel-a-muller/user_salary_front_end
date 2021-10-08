@@ -9,6 +9,7 @@ import { UserService } from './service.service';
 export class AppComponent implements OnInit {
   title = 'salary-manager';
   userList: any;
+  currentEditingUser: any;
   isEditing = false;
   constructor(private service: UserService) {}
 
@@ -21,5 +22,13 @@ export class AppComponent implements OnInit {
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
+    if ( this.isEditing == false ) {
+      this.currentEditingUser = null;
+    }
+  }
+
+  setEditUser(user: any) {
+    this.currentEditingUser = user;
+    console.log(this.currentEditingUser);
   }
 }

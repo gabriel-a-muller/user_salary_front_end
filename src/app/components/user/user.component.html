@@ -2,9 +2,19 @@
   <h2>{{ user.name }}</h2>
   <p><strong>CPF:</strong> {{ user.cpf }}</p>
   <p><strong>Data de Nascimento:</strong> {{ formatDate(user.born_date) }}</p>
+  <p><button
+      id="appButton"
+      mat-raised-button
+      color="accent"
+      (click)="changeUser()"
+    >
+      Editar Usuário
+    </button>
+  </p>
   <strong *ngIf="user.salaries.length > 0">Salários:</strong>
   <div class="salary-container">
     <app-salary *ngFor="let salary of user.salaries" [salary]="salary">
     </app-salary>
   </div>
+  
 </app-card>

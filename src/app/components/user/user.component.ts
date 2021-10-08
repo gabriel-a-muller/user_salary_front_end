@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { formatDate } from 'src/app/utils/formatter';
 
 @Component({
@@ -8,5 +8,12 @@ import { formatDate } from 'src/app/utils/formatter';
 })
 export class UserComponent {
   @Input() user: any;
+  @Output() editUser = new EventEmitter();
+  @Output() setEditUser = new EventEmitter();
   formatDate = formatDate;
+
+  changeUser(): void {
+    this.setEditUser.emit(this.user);
+    this.editUser.emit();
+  }
 }
