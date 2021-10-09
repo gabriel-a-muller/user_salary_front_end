@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserService } from 'src/app/service.service';
 import { formatDate } from 'src/app/utils/formatter';
 
 @Component({
@@ -11,9 +12,15 @@ export class UserComponent {
   @Output() editUser = new EventEmitter();
   @Output() setEditUser = new EventEmitter();
   formatDate = formatDate;
+  constructor(private service: UserService) {}
 
   changeUser(): void {
     this.setEditUser.emit(this.user);
     this.editUser.emit();
+  }
+
+  deleteUser(id: number): void {
+    this.service.deleteUser(id);
+    window.location.reload();
   }
 }

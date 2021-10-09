@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   editUser(): void {
-    this.service.editUser(this.userForm.value);
+    this.service.patchUser(this.userForm.value, this.currentEditingUser.id);
+    this.createUser.emit();
   }
 }

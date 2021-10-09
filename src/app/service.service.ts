@@ -10,24 +10,25 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUserList(): Observable<any> {
-    return this.http.get('api/v1/user/');
+    return this.http.get('api/v1/user');
   }
 
   createUser(userValue: any): Subscription {
     userValue.born_date = formatDateAPI(userValue.born_date);
     console.log(userValue);
-    return this.http.post('api/v1/user/create/', userValue).subscribe();
+    return this.http.post('api/v1/user/create', userValue).subscribe();
   }
 
-  patchUser(userValue: any): Subscription {
-    return this.http.patch('api/v1/user/update/ID!', userValue).subscribe();
+  patchUser(userValue: any, id: number): Subscription {
+    console.log(userValue);
+    return this.http.patch(`api/v1/user/update/${id}`, userValue).subscribe();
   }
 
-  editUser(userValue: any): Subscription {
-    return this.http.put('api/v1/user/update/ID!', userValue).subscribe();
+  editUser(userValue: any, id: number): Subscription {
+    return this.http.put(`api/v1/user/update/${id}`, userValue).subscribe();
   }
 
   deleteUser(id: number): Subscription {
-    return this.http.delete('api/v1/user/delete/ID!').subscribe();
+    return this.http.delete(`api/v1/user/delete/${id}`).subscribe();
   }
 }
