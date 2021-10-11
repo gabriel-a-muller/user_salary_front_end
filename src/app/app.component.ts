@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SalaryService } from './salary.service';
 import { UserService } from './service.service';
+import { formatCurrency, formatDate } from './utils/formatter';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +12,38 @@ export class AppComponent implements OnInit {
   title = 'salary-manager';
   userList: any;
   currentEditingUser: any;
+  minSalary: any;
+  maxSalary: any;
+  averageSalary: any;
+  averageDiscount: any;
   isEditing = false;
-  constructor(private service: UserService) {}
+  formatCurrency = formatCurrency;
+  formatDate = formatDate;
+  constructor(private serviceUser: UserService, private serviceSalary: SalaryService) {}
 
   ngOnInit() {
-    this.service.getUserList().subscribe((userList) => {
+    this.serviceUser.getUserList().subscribe((userList) => {
       this.userList = userList;
-      console.log(this.userList);
+    });
+
+    this.serviceSalary.getSalaryMax().subscribe((maxSalary) => {
+      this.maxSalary = maxSalary;
+    });
+
+    this.serviceSalary.getSalaryMin().subscribe((minSalary) => {
+      this.minSalary = minSalary;
+    });
+
+    this.serviceSalary.getSalaryAverage().subscribe((averageSalary) => {
+      this.averageSalary = averageSalary;
+    });
+
+    this.serviceSalary.getDiscountsAverage().subscribe((averageDiscount) => {
+      this.averageDiscount = averageDiscount;
     });
   }
 
-  toggleEditing() {
+  toggleUserEditing() {
     this.isEditing = !this.isEditing;
     if ( this.isEditing == false ) {
       this.currentEditingUser = null;
@@ -29,6 +52,5 @@ export class AppComponent implements OnInit {
 
   setEditUser(user: any) {
     this.currentEditingUser = user;
-    console.log(this.currentEditingUser);
   }
 }

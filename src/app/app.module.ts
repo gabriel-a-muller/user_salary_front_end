@@ -14,6 +14,7 @@ import { CardComponent } from './components/card/card.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SalaryComponent } from './components/salary/salary.component';
 import { UserComponent } from './components/user/user.component';
+import { RegisterSalaryComponent } from './components/register-salary/register-salary.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { UserComponent } from './components/user/user.component';
     SalaryComponent,
     CardComponent,
     RegisterComponent,
+    RegisterSalaryComponent,
   ],
   imports: [
     BrowserModule,

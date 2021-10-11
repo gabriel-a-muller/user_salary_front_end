@@ -31,10 +31,12 @@ export class RegisterComponent implements OnInit {
   registerUser(): void {
     this.service.createUser(this.userForm.value);
     this.createUser.emit();
+    window.location.reload();
   }
 
   editUser(): void {
     this.service.patchUser(this.userForm.value, this.currentEditingUser.id);
     this.createUser.emit();
+    window.location.reload();
   }
 }

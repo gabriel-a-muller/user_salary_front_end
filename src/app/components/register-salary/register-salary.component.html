@@ -1,0 +1,49 @@
+<app-card>
+    <h2>Novo Salário</h2>
+    <form id="form-salary" [formGroup]="salaryForm">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Salário: </mat-label>
+        <input matInput placeholder="" formControlName="salary" />
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Desconto: </mat-label>
+        <input matInput placeholder=""  formControlName="discounts" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Data: </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker
+          #picker
+          startView="year"
+          [startAt]="startDate"
+        ></mat-datepicker>
+      </mat-form-field>
+    </form>
+
+    <ng-container *ngIf="!currentEditingSalary">
+        <button
+          id="appButton"
+          mat-raised-button
+          color="primary"
+          (click)="registerSalary()"
+        >
+          Registrar Salário
+        </button>
+      </ng-container>
+      
+      <ng-container *ngIf="currentEditingSalary">
+        <button
+          id="appButton"
+          mat-raised-button
+          color="primary"
+          (click)="editSalary()"
+        >
+          Finalizar Edição
+        </button>
+      </ng-container>
+  </app-card>
+  
+  

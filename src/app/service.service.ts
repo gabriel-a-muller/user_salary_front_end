@@ -15,12 +15,10 @@ export class UserService {
 
   createUser(userValue: any): Subscription {
     userValue.born_date = formatDateAPI(userValue.born_date);
-    console.log(userValue);
     return this.http.post('api/v1/user/create', userValue).subscribe();
   }
 
   patchUser(userValue: any, id: number): Subscription {
-    console.log(userValue);
     return this.http.patch(`api/v1/user/update/${id}`, userValue).subscribe();
   }
 

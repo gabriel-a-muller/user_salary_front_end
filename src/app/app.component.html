@@ -1,19 +1,47 @@
 <div class="app">
   <ng-container *ngIf="!isEditing">
+    <div class="info-div">
+      <ng-container *ngIf="averageSalary">
+        <app-card>
+        <strong>Média dos Salários: </strong> {{ formatCurrency(averageSalary.average) }}
+        </app-card>
+        <app-card>
+        <strong>Média dos Descontos: </strong> {{ formatCurrency(averageDiscount.average) }}
+        </app-card>
+      </ng-container>
+    </div>
+    <div class="info-div">
+      <ng-container *ngIf="minSalary">
+        <app-card>
+          <strong>Menor Salário:</strong>
+          <p>Salário: {{ formatCurrency(minSalary.salary) }}</p>
+          <p>Descontos: {{ formatCurrency(minSalary.discounts) }}</p>
+          <p>Data: {{ formatDate(minSalary.date) }}</p>
+        </app-card>
+      </ng-container>
+      <ng-container *ngIf="maxSalary">
+        <app-card>
+          <strong>Maior Salário:</strong>
+          <p>Salário: {{ formatCurrency(maxSalary.salary) }}</p>
+          <p>Descontos: {{ formatCurrency(maxSalary.discounts) }}</p>
+          <p>Data: {{ formatDate(maxSalary.date) }}</p>
+        </app-card>
+      </ng-container>
+    </div>
     <button
       id="appButton"
       mat-raised-button
       color="primary"
-      (click)="toggleEditing()"
+      (click)="toggleUserEditing()"
     >
       Cadastrar Usuário
     </button>
     <ng-container *ngIf="userList">
-      <app-user *ngFor="let result of userList.results" [user]="result" (editUser)="toggleEditing()" (setEditUser)="setEditUser($event)">
+      <app-user *ngFor="let result of userList.results" [user]="result" (editUser)="toggleUserEditing()" (setEditUser)="setEditUser($event)">
       </app-user>
     </ng-container>
   </ng-container>
   <div *ngIf="isEditing">
-    <app-register [currentEditingUser]="currentEditingUser" (createUser)="toggleEditing()"></app-register>
+    <app-register [currentEditingUser]="currentEditingUser" (createUser)="toggleUserEditing()"></app-register>
   </div>
 </div>

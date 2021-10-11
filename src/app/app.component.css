@@ -13,3 +13,19 @@
   height: 50px;
   font-size: 20px;
 }
+
+.min-button {
+  width: 50%;
+  height: 50px;
+  font-size: 20px;
+}
+
+.info-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.info-div ::ng-deep .card {
+  margin-right: 20px;
+}

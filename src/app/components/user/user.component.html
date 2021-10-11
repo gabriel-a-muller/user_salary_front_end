@@ -1,28 +1,49 @@
+<ng-container *ngIf="!isEditingSalary">
 <app-card>
-  <h2>{{ user.name }}</h2>
+  <div class="first-row">
+    <h2 class="user-name">{{ user.name }}</h2>
+    <div class="user-buttons">
+      <button
+          id="appButton"
+          mat-icon-button
+          color="primary"
+          (click)="changeUser()"
+        >
+        <mat-icon> border_color</mat-icon>
+        </button>
+      <button
+        id="appButton"
+        mat-icon-button
+        color="warn"
+        (click)="deleteUser(user.id)"
+      >
+      <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
   <p><strong>CPF:</strong> {{ user.cpf }}</p>
   <p><strong>Data de Nascimento:</strong> {{ formatDate(user.born_date) }}</p>
+
   <p><button
       id="appButton"
       mat-raised-button
       color="primary"
-      (click)="changeUser()"
+      (click)="toggleSalaryEditing()"
     >
-      Editar Usuário
+      Novo Salário
     </button>
-  <button
-    id="appButton"
-    mat-icon-button
-    color="warn"
-    (click)="deleteUser(user.id)"
-  >
-  <mat-icon>delete</mat-icon>
-  </button>
-</p>
+  </p>
+
   <strong *ngIf="user.salaries.length > 0">Salários:</strong>
   <div class="salary-container">
-    <app-salary *ngFor="let salary of user.salaries" [salary]="salary">
+    <app-salary *ngFor="let salary of user.salaries" [salary]="salary" (editSalary)="toggleSalaryEditing()" (setEditSalary)="setEditSalary($event)">
     </app-salary>
   </div>
-  
+
 </app-card>
+</ng-container>
+
+<div *ngIf="isEditingSalary">
+  <app-register-salary [user]="user" [currentEditingSalary]="currentEditingSalary" (createSalary)="toggleSalaryEditing()"></app-register-salary>
+</div>

@@ -1,7 +1,22 @@
 .salary-container {
   display: flex;
+  flex-wrap: wrap;
+  margin-left: 60px;
 }
 
 .salary-container ::ng-deep .card {
   margin-right: 20px;
+}
+
+.user-buttons {
+  justify-self: flex-end;
+  
+}
+
+.first-row {
+  display: flex;
+}
+
+.user-name {
+  flex-grow: 1;
 }

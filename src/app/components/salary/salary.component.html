@@ -2,4 +2,22 @@
   <p><strong>Salário:</strong> {{ formatCurrency(salary.salary) }}</p>
   <p><strong>Descontos:</strong> {{ formatCurrency(salary.discounts) }}</p>
   <p><strong>Data:</strong> {{ formatDate(salary.date) }}</p>
+  <div class="salary-div">
+    <button
+      id="salaryButton"
+      mat-icon-button
+      color="primary"
+      (click)="changeSalary()"
+    >
+    <mat-icon> border_color</mat-icon>
+    </button>
+    <button
+      id="salaryButton"
+      mat-icon-button
+      color="warn"
+      (click)="deleteSalary(salary.id)"
+    >
+    <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </app-card>
